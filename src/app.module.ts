@@ -1,10 +1,12 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { createObserveModule } from '@nestjs/observe';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
-import { TransformInterceptor } from './utils/interceptors/transform.interceptor';
+import { TransformInterceptor } from './common/interceptors/transform.interceptor';
+import { ApiKeyMiddleware } from './common/middlewares/api-key/api-key.middleware';
+import { UserController } from './user/user.controller';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -28,4 +30,8 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     },
   ],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(ApiKeyMiddleware).forRoutes(UserController);
+  }
+}
