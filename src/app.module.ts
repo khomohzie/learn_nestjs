@@ -2,11 +2,11 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { createObserveModule } from '@nestjs/observe';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
+import { UserModule } from './modules/user/user.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { ApiKeyMiddleware } from './common/middlewares/api-key/api-key.middleware';
-import { UserController } from './user/user.controller';
+import { UserController } from './modules/user/user.controller';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 

@@ -9,7 +9,7 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { CustomMessage } from '../common/decorators/custom-message.decorator';
+import { CustomMessage } from '../../common/decorators/custom-message.decorator';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './user.service';
