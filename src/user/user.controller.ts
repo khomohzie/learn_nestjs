@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   Query,
@@ -24,8 +25,8 @@ export class UserController {
   }
 
   @Get(':id')
-  getUsersById(@Param('id') id: string) {
-    return this.userService.findUserById(Number(id));
+  getUsersById(@Param('id', ParseIntPipe) id: number) {
+    return this.userService.findUserById(id);
   }
 
   @Post()
