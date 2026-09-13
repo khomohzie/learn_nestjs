@@ -49,7 +49,7 @@ export class UserService {
     const index = this.users.findIndex((user) => user.id === id);
 
     if (index === -1) {
-      return null;
+      throw new NotFoundException('User not found');
     }
 
     return (this.users[index] = { ...this.users[index], ...user });
@@ -61,7 +61,7 @@ export class UserService {
     const index = this.users.findIndex((user) => user.id === id);
 
     if (index === -1) {
-      return null;
+      throw new NotFoundException('User does not exist');
     }
 
     return this.users.splice(index, 1)[0];
